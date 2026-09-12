@@ -143,7 +143,7 @@ export default function Home() {
           </>}
         </div>
       </section>
-      <footer><span>PDF Voice Reader</span><span>Browser speech synthesis · No account required</span></footer>
+      <footer className={styles.footer}><span>PDF Voice Reader</span><span>Browser speech synthesis · No account required</span></footer>
     </main>
   );
 }

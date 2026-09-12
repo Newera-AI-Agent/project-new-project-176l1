@@ -67,7 +67,5 @@
 .sectionMeta { display:block; color:var(--muted); font-size:.62rem; margin-bottom:.38rem; }
 .progress { color:var(--accent-dark); margin:1.1rem 0 4rem; font-size:.66rem; }
 .progress span { color:var(--muted); letter-spacing:0; font-weight:500; }
-footer { max-width:1240px; margin:auto; padding:1.4rem 0 2.8rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--muted); font-size:.72rem; }
-:focus-visible { outline:3px solid var(--accent); outline-offset:3px; }
-@media (max-width: 760px) { .header { height:72px; } .localBadge { font-size:.58rem; } .workspace { grid-template-columns:1fr; gap:2.4rem; } .dropzone { min-height:220px; } .intro { margin-top:3.5rem; } .intro h1 { font-size:clamp(3.2rem, 16vw, 5.5rem); } .controls { align-items:stretch; } .selectLabel, .rateLabel { margin-left:0; width:100%; justify-content:space-between; } .controls select { flex:1; max-width:none; } footer { gap:1rem; flex-direction:column; } }
-@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior:auto !important; animation-duration:.01ms !important; transition-duration:.01ms !important; } }
+.footer { max-width:1240px; margin:auto; padding:1.4rem 0 2.8rem; border-top:1px solid var(--line); display:flex; justify-content:space-between; color:var(--muted); font-size:.72rem; }
+@media (max-width: 760px) { .header { height:72px; } .localBadge { font-size:.58rem; } .workspace { grid-template-columns:1fr; gap:2.4rem; } .dropzone { min-height:220px; } .intro { margin-top:3.5rem; } .intro h1 { font-size:clamp(3.2rem, 16vw, 5.5rem); } .controls { align-items:stretch; } .selectLabel, .rateLabel { margin-left:0; width:100%; justify-content:space-between; } .controls select { flex:1; max-width:none; } .footer { gap:1rem; flex-direction:column; } }
