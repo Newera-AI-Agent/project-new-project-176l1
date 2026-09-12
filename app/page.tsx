@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ChangeEvent, DragEvent, useCallback, useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
@@ -37,6 +38,7 @@ export default function Home() {
   const [paused, setPaused] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const activeUtterance = useRef<SpeechSynthesisUtterance | null>(null);
+  const speakRef = useRef<(index: number) => void>(() => undefined);
   const cancelRef = useRef(false);
 
   const loadVoices = useCallback(() => {
@@ -47,9 +49,12 @@ export default function Home() {
   }, [voiceName]);
 
   useEffect(() => {
-    loadVoices();
+    const timer = window.setTimeout(loadVoices, 0);
     window.speechSynthesis?.addEventListener("voiceschanged", loadVoices);
-    return () => window.speechSynthesis?.removeEventListener("voiceschanged", loadVoices);
+    return () => {
+      window.clearTimeout(timer);
+      window.speechSynthesis?.removeEventListener("voiceschanged", loadVoices);
+    };
   }, [loadVoices]);
 
   const reset = useCallback(() => {
@@ -98,10 +103,11 @@ export default function Home() {
     const utterance = new SpeechSynthesisUtterance(section.text); const chosen = voices.find(v => v.name === voiceName);
     if (chosen) utterance.voice = chosen; utterance.rate = rate;
     utterance.onstart = () => { setSpeaking(true); setPaused(false); setCurrent(index); };
-    utterance.onend = () => { if (!cancelRef.current && index + 1 < sections.length) speak(index + 1); else { setSpeaking(false); setPaused(false); } };
+    utterance.onend = () => { if (!cancelRef.current && index + 1 < sections.length) speakRef.current(index + 1); else { setSpeaking(false); setPaused(false); } };
     utterance.onerror = (event) => { if (event.error !== "canceled" && event.error !== "interrupted") setMessage("Speech stopped unexpectedly. Try play again or choose another voice."); setSpeaking(false); setPaused(false); };
     activeUtterance.current = utterance; setCurrent(index); window.speechSynthesis.speak(utterance);
   }, [rate, sections, voiceName, voices]);
+  speakRef.current = speak;
 
   const play = () => { if (!sections.length) return; if (paused) { window.speechSynthesis.resume(); setPaused(false); } else speak(current >= 0 ? current : 0); };
   const pause = () => { window.speechSynthesis?.pause(); setPaused(true); };
@@ -110,7 +116,7 @@ export default function Home() {
 
   return (
     <main className={styles.shell}>
-      <header className={styles.header}><a className={styles.brand} href="/" aria-label="PDF Voice Reader home"><span className={styles.mark}>PV</span><span>PDF Voice Reader</span></a><span className={styles.localBadge}>LOCAL ONLY</span></header>
+      <header className={styles.header}><Link className={styles.brand} href="/" aria-label="PDF Voice Reader home"><span className={styles.mark}>PV</span><span>PDF Voice Reader</span></Link><span className={styles.localBadge}>LOCAL ONLY</span></header>
       <section className={styles.intro} aria-labelledby="page-title"><p className={styles.eyebrow}>READ WITH YOUR EARS</p><h1 id="page-title">Your PDF,<br /><em>spoken clearly.</em></h1><p className={styles.lede}>Turn a document into a focused listening session. Nothing leaves your browser.</p></section>
       <section className={styles.workspace} aria-label="PDF reader workspace">
         <div className={styles.uploadColumn}>
