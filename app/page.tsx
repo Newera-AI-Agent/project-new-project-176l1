@@ -107,7 +107,9 @@ export default function Home() {
     utterance.onerror = (event) => { if (event.error !== "canceled" && event.error !== "interrupted") setMessage("Speech stopped unexpectedly. Try play again or choose another voice."); setSpeaking(false); setPaused(false); };
     activeUtterance.current = utterance; setCurrent(index); window.speechSynthesis.speak(utterance);
   }, [rate, sections, voiceName, voices]);
-  speakRef.current = speak;
+  useEffect(() => {
+    speakRef.current = speak;
+  }, [speak]);
 
   const play = () => { if (!sections.length) return; if (paused) { window.speechSynthesis.resume(); setPaused(false); } else speak(current >= 0 ? current : 0); };
   const pause = () => { window.speechSynthesis?.pause(); setPaused(true); };
