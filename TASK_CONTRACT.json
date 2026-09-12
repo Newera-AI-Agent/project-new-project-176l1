@@ -14,7 +14,6 @@
       "description": "Complete the user request as stated.",
       "mandatory": true,
       "status": "pending",
-      "evidenceType": "custom",
       "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
     }
   ],
@@ -30,5 +29,5 @@
   "permissions": [],
   "deferredItems": [],
   "createdAt": 1789246652488,
-  "updatedAt": 1789246670612
+  "updatedAt": 1789247110224
 }
