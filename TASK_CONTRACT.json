@@ -1,0 +1,34 @@
+{
+  "originalRequest": "no",
+  "normalizedInterpretation": "Build a public, client-side PDF text-to-voice reader. Users can upload a PDF, extract readable text in the browser, choose a voice and speaking rate, play/pause/resume/stop speech, navigate through extracted text, and see clear loading, empty, error, and progress states. Do not deploy; repository visibility is public.",
+  "assumptions": [
+    "PDF files are processed locally in the browser and are not uploaded to a server.",
+    "Browser SpeechSynthesis is the speech engine; unsupported browsers must show a clear message.",
+    "The app is a single-page web application suitable for static hosting.",
+    "Deployment is declined for this task."
+  ],
+  "profile": "fast",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "description": "Complete the user request as stated.",
+      "mandatory": true,
+      "status": "pending",
+      "evidenceType": "custom",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request."
+    }
+  ],
+  "featureMatrix": [
+    "Complete the user request as stated."
+  ],
+  "contentMatrix": [],
+  "assetManifest": [],
+  "audioManifest": [],
+  "testMatrix": [],
+  "artifactMatrix": [],
+  "platformRequirements": [],
+  "permissions": [],
+  "deferredItems": [],
+  "createdAt": 1789246652488,
+  "updatedAt": 1789246670612
+}
