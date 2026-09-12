@@ -1,0 +1,14 @@
+{
+  "originalRequest": "no",
+  "normalizedInterpretation": "Build a public, client-side PDF text-to-voice reader. Users can upload a PDF, extract readable text in the browser, choose a voice and speaking rate, play/pause/resume/stop speech, navigate through extracted text, and see clear loading, empty, error, and progress states. Do not deploy; repository visibility is public.",
+  "requirements": [
+    {
+      "id": "REQ-001",
+      "description": "Complete the user request as stated.",
+      "mandatory": true,
+      "status": "complete",
+      "acceptanceCriteria": "Concrete implementation evidence is recorded and the outcome matches the user request.",
+      "evidenceRef": "Implemented the root Next.js App Router client app with local PDF upload/drop handling, pdfjs-dist browser extraction with configured worker, 25 MB/type validation, malformed and no-text errors, reset/load-another flow, privacy messaging, readable page sections, SpeechSynthesis voice selection/rate/"
+    }
+  ]
+}
